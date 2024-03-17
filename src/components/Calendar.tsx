@@ -12,7 +12,8 @@ const Calendar = () => {
   useEffect(() => {
     console.log(selectedCoursesToEvents(selectedCourses));
     const events = selectedCoursesToEvents(selectedCourses);
-    calendarRef.current.control.update({ events: events });
+    // @ts-ignore
+    calendarRef.current && calendarRef.current.control.update({ events: events });
   }, [selectedCourses]);
   return (
     <Card m={10}>
