@@ -5,11 +5,10 @@ import { SelectedCoursesContext } from '../context/useSelectedCourses';
 import selectedCoursesToEvents from '../lib/selectedCoursesToEvents';
 import { COLUMNS } from '../lib/constants';
 
-type Props = {}
 
-const Calendar = (props: Props) => {
-  const {selectedCourses, setSelectedCourses} = useContext(SelectedCoursesContext);
-  const calendarRef = useRef();
+const Calendar = () => {
+  const {selectedCourses} = useContext(SelectedCoursesContext);
+  const calendarRef = useRef(null);
   useEffect(() => {
     console.log(selectedCoursesToEvents(selectedCourses));
     const events = selectedCoursesToEvents(selectedCourses);

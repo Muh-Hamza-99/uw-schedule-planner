@@ -21,13 +21,12 @@ import SelectedCourseItem from "./SelectedCourseItem";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
+  const btnRef = useRef(null);
   const toast = useToast();
-  const {selectedCourses, setSelectedCourses} = useContext(SelectedCoursesContext);
+  const {selectedCourses} = useContext(SelectedCoursesContext);
   const [courses, setCourses] = useState<Course[]>([]);
   const [subjectCode, setSubjectCode] = useState("");
   const [catalogNumber, setCatalogNumber] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const getCourses = async () => {
     const url = `https://openapi.data.uwaterloo.ca/v3/ClassSchedules/1241/${subjectCode.toLowerCase().trim()}/${catalogNumber.toLowerCase().trim()}`;
@@ -47,15 +46,12 @@ const Sidebar = () => {
       return;
     }
     try {
-      setLoading(true);
       setCourses([]);
       getCourses();
     } catch (error) {
       toast({ title: "Umm...", description: `Something went wrong!`, duration: 3000, isClosable: true, status: "error" });
       setSubjectCode("");
       setCatalogNumber("");
-    } finally {
-      setLoading(false);
     }
   }
 

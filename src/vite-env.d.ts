@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+declare module "@daypilot/daypilot-lite-react"
 
 interface ImportMetaEnv {
   readonly VITE_UW_API_KEY: string;
