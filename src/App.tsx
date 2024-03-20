@@ -4,7 +4,6 @@ import Sidebar from "./components/Sidebar";
 import { ContextProvider } from "./context/useSelectedCourses";
 
 const App = () => {
-  
   return (
     <ContextProvider>
       <Navbar />

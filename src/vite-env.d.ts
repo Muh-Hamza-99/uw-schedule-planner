@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 declare module "@daypilot/daypilot-lite-react"
+declare module "daypilot-pro-react"
 
 interface ImportMetaEnv {
   readonly VITE_UW_API_KEY: string;
@@ -71,4 +72,14 @@ type Event = {
   text: string;
   start: string;
   end: string;
+}
+
+type Term = {
+  associatedAcademicYear: number;
+  name: string;
+  nameShort: string;
+  sixtyPercentCompleteDate: string;
+  termBeginDate: string;
+  termCode: string;
+  termEndDate: string;
 }
