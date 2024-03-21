@@ -8,7 +8,6 @@ import {
   Divider,
   Card,
   CardFooter,
-  CardHeader,
   CardBody
 } from "@chakra-ui/react";
 import { SelectedCoursesContext } from "../context/useSelectedCourses";

@@ -1,4 +1,3 @@
-import { Card } from '@chakra-ui/react'
 import { DayPilotCalendar } from "daypilot-pro-react";
 import { useContext, useEffect, useRef } from 'react';
 import { SelectedCoursesContext } from '../context/useSelectedCourses';
