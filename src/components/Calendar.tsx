@@ -16,7 +16,6 @@ const Calendar = () => {
     calendarRef.current && calendarRef.current.control.update({ events: events });
   }, [selectedCourses]);
   return (
-    <Card mx={10}>
         <DayPilotCalendar 
           ref={calendarRef} 
           dayBeginsHour={8}
@@ -30,7 +29,6 @@ const Calendar = () => {
           eventClickHandling={"Disabled"}
           eventRightClickHandling={"Disabled"}
         />
-    </Card>
   )
 }
 

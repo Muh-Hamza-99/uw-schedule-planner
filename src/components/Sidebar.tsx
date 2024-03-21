@@ -1,27 +1,21 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import axios, { isAxiosError } from "axios";
 import {
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  DrawerFooter,
-  useDisclosure,
   Button,
   Stack,
   Input,
   useToast,
-  Divider
+  Divider,
+  Card,
+  CardFooter,
+  CardHeader,
+  CardBody
 } from "@chakra-ui/react";
 import { SelectedCoursesContext } from "../context/useSelectedCourses";
 import CourseItem from "./CourseItem";
 import SelectedCourseItem from "./SelectedCourseItem";
 
 const Sidebar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef(null);
   const toast = useToast();
   const {selectedCourses} = useContext(SelectedCoursesContext);
   const [courses, setCourses] = useState<Course[]>([]);
@@ -57,24 +51,17 @@ const Sidebar = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Add Classes
-      </Button>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef} size="md">
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Classes</DrawerHeader>
-          <DrawerBody>
+      <Card mt={2} height={"80vh"}>
+          <CardBody overflow={"scroll"}>
             <Stack mb={4} spacing={3} direction="row">
               <Input onChange={event => setSubjectCode(event.target.value)} value={subjectCode} placeholder="MATH, CS, ECON..." />
               <Input onChange={event => setCatalogNumber(event.target.value)} value={catalogNumber} placeholder="138, 136, 101..." />
             </Stack>
-            <Stack mb={12}>
+            <Stack mb={4}>
               {selectedCourses?.map((course, index) => (<SelectedCourseItem key={index} course={course} subjectCode={subjectCode} catalogNumber={catalogNumber} />))}
             </Stack>
             <Divider />
-            <Stack mt={12}>
+            <Stack mt={4}>
             {courses?.map((course, index) => {
                 const isSelectedCourse = selectedCourses.map(course => course.classNumber).includes(course.classNumber);
                 if (isSelectedCourse) {
@@ -84,12 +71,11 @@ const Sidebar = () => {
                 }
               })}
             </Stack>
-          </DrawerBody>
-          <DrawerFooter>
+          </CardBody>
+          <CardFooter>
             <Button onClick={onSubmit} my={2} colorScheme="teal">Get Classes</Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+          </CardFooter>
+      </Card>
     </>
   );
 };
