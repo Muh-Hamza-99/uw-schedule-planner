@@ -15,16 +15,18 @@ import {
 import { SelectedCoursesContext } from "../context/useSelectedCourses";
 import CourseItem from "./CourseItem";
 import SelectedCourseItem from "./SelectedCourseItem";
+import { TermContext } from "../context/useTerm";
 
 const Sidebar = () => {
   const toast = useToast();
   const {selectedCourses, setSelectedCourses} = useContext(SelectedCoursesContext);
+  const {term} = useContext(TermContext);
   const [courses, setCourses] = useState<Course[]>([]);
   const [subjectCode, setSubjectCode] = useState("");
   const [catalogNumber, setCatalogNumber] = useState("");
 
   const getCourses = async () => {
-    const url = `https://openapi.data.uwaterloo.ca/v3/ClassSchedules/1241/${subjectCode.toLowerCase().trim()}/${catalogNumber.toLowerCase().trim()}`;
+    const url = `https://openapi.data.uwaterloo.ca/v3/ClassSchedules/${term?.termCode}/${subjectCode.toLowerCase().trim()}/${catalogNumber.toLowerCase().trim()}`;
     await axios.get(url, { headers: { "x-api-key": import.meta.env.VITE_UW_API_KEY } })
         .then(data => setCourses(data.data))
         .catch(error => {
@@ -38,6 +40,9 @@ const Sidebar = () => {
   const onSubmit = () => {
     if (subjectCode === "" || catalogNumber === "") {
       toast({ title: "Invalid Input!", description: "Please fill in the fields", duration: 3000, isClosable: true, status: "error" });
+      return;
+    } else if (!term) {
+      toast({ title: "No Term!", description: "Please pick a term!", duration: 3000, isClosable: true, status: "error" });
       return;
     }
     try {

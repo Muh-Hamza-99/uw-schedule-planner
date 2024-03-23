@@ -11,7 +11,7 @@ type Provider = {
     children: React.ReactNode
 }
 
-export function ContextProvider({ children }: Provider) {
+export function SelectedCoursesContextProvider({ children }: Provider) {
     const [selectedCourses, setSelectedCourses] = useState<SelectedCourse[]>([]);
     return (
         <SelectedCoursesContext.Provider value={{selectedCourses, setSelectedCourses}}>
