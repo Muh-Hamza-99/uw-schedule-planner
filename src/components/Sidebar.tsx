@@ -57,7 +57,7 @@ const Sidebar = () => {
               <Input onChange={event => setCatalogNumber(event.target.value)} value={catalogNumber} placeholder="138, 136, 101..." />
             </Stack>
             <Stack mb={4}>
-              {selectedCourses?.map((course, index) => (<SelectedCourseItem key={index} course={course} subjectCode={subjectCode} catalogNumber={catalogNumber} />))}
+              {selectedCourses?.map((course, index) => (<SelectedCourseItem key={index} course={course} />))}
             </Stack>
             <Divider />
             <Stack mt={4}>

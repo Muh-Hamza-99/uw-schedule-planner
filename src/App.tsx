@@ -3,12 +3,11 @@ import Calendar from "./components/Calendar";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { ContextProvider } from "./context/useSelectedCourses";
-import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <ContextProvider>
-      <Flex m={4} gap={4} justifyContent={"space-between"}>
+      <Flex m={4} gap={4} height="100vh" justifyContent={"space-between"}>
         <Flex width={"40%"} height={"100%"} flexDirection={"column"}>
           <Navbar />
           <Sidebar />
@@ -17,7 +16,6 @@ const App = () => {
           <Calendar  />
         </Box>
       </Flex>
-      <Footer />
     </ContextProvider>
   );
 };

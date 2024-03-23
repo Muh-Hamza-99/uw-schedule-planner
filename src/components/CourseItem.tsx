@@ -21,12 +21,8 @@ const CourseItem = ({ course, subjectCode, catalogNumber }: Props) => {
     const endHours = endDate.getHours();
     const endMinutes = endDate.getMinutes();
 
-    const handleCourses = (event: React.ChangeEvent<HTMLInputElement>, course: Course) => {
-        if (event.target.checked) {
+    const handleCourses = (course: Course) => {
           setSelectedCourses([...selectedCourses, { ...course,  subjectCode: subjectCode.toUpperCase().trim(), catalogNumber: catalogNumber.toUpperCase().trim() }]);
-        } else {
-          setSelectedCourses(selectedCourses.filter(selectedCourse => selectedCourse.classNumber !== course.classNumber))
-        }
       }
 
     if (course.courseComponent === "LEC" || course.courseComponent === "LAB") {
@@ -39,7 +35,7 @@ const CourseItem = ({ course, subjectCode, catalogNumber }: Props) => {
                 <Badge colorScheme="purple">{daysFormatter(classMeetingWeekPatternCode) ? daysFormatter(classMeetingWeekPatternCode) : "Online"}</Badge>
                 {enrolledStudents !== maxEnrollmentCapacity ? (<Badge>{`${enrolledStudents}/${maxEnrollmentCapacity}`}</Badge>) : (<Badge colorScheme="red">FULL</Badge>)}
                 <Spacer />
-                <Checkbox defaultChecked={selectedCourses.map(course => course.classNumber).includes(course.classNumber)} onChange={event => handleCourses(event, course)}></Checkbox>
+                <Checkbox onChange={() => handleCourses(course)}></Checkbox>
               </Stack>
             </CardBody>
           </Card>

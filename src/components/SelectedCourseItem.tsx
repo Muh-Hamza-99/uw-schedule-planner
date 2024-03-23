@@ -6,11 +6,9 @@ import { SelectedCoursesContext } from '../context/useSelectedCourses';
 
 type Props = {
     course: SelectedCourse
-    subjectCode: string
-    catalogNumber: string
 }
 
-const CourseItem = ({ course, subjectCode, catalogNumber }: Props) => {
+const CourseItem = ({ course }: Props) => {
     const {selectedCourses, setSelectedCourses} = useContext(SelectedCoursesContext);
     const { classMeetingEndTime, classMeetingStartTime, classMeetingWeekPatternCode }: Schedule = course.scheduleData[0];
     const { enrolledStudents, maxEnrollmentCapacity } = course;
@@ -21,12 +19,8 @@ const CourseItem = ({ course, subjectCode, catalogNumber }: Props) => {
     const endHours = endDate.getHours();
     const endMinutes = endDate.getMinutes();
 
-    const handleCourses = (event: React.ChangeEvent<HTMLInputElement>, course: SelectedCourse) => {
-        if (event.target.checked) {
-          setSelectedCourses([...selectedCourses, { ...course,  subjectCode: subjectCode.toUpperCase().trim(), catalogNumber: catalogNumber.toUpperCase().trim() }]);
-        } else {
-          setSelectedCourses(selectedCourses.filter(selectedCourse => selectedCourse.classNumber !== course.classNumber))
-        }
+    const handleCourses = (course: SelectedCourse) => {
+          setSelectedCourses(selectedCourses.filter(selectedCourse => selectedCourse.classNumber !== course.classNumber));
       }
 
     if (course.courseComponent === "LEC" || course.courseComponent === "LAB") {
@@ -40,7 +34,7 @@ const CourseItem = ({ course, subjectCode, catalogNumber }: Props) => {
                 <Badge colorScheme="purple">{daysFormatter(classMeetingWeekPatternCode) ? daysFormatter(classMeetingWeekPatternCode) : "Online"}</Badge>
                 {enrolledStudents !== maxEnrollmentCapacity ? (<Badge>{`${enrolledStudents}/${maxEnrollmentCapacity}`}</Badge>) : (<Badge colorScheme="red">FULL</Badge>)}
                 <Spacer />
-                <Checkbox defaultChecked={selectedCourses.map(course => course.classNumber).includes(course.classNumber)} onChange={event => handleCourses(event, course)}></Checkbox>
+                <Checkbox defaultChecked onChange={() => handleCourses(course)}></Checkbox>
               </Stack>
             </CardBody>
           </Card>
