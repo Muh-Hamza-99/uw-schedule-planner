@@ -19,7 +19,7 @@ const Navbar = () => {
     const url = `https://openapi.data.uwaterloo.ca/v3/Terms/foracademicyear/${Number((new Date).getFullYear()) + 1}`;
     await axios.get(url, { headers: { "x-api-key": import.meta.env.VITE_UW_API_KEY } })
         .then(data => setTerms(data.data))
-        .catch(error => toast({ title: "Not found!", description: "UW API isn't working!", duration: 3000, isClosable: true, status: "error" }));
+        .catch(() => toast({ title: "Not found!", description: "UW API isn't working!", duration: 3000, isClosable: true, status: "error" }));
   }
 
   useEffect(() => {
