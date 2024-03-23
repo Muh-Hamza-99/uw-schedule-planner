@@ -14,7 +14,7 @@ const selectedCoursesToEvents = (courses: SelectedCourse[]) => {
             const [endHours, endMinutes] = (classMeetingEndTime.split("T")[1]).split(":");
             const event = {
                 id: i,
-                text: `${subjectCode} ${catalogNumber} | ${timeFormatter(Number(startHours), Number(startMinutes))} - ${timeFormatter(Number(endHours), Number(endMinutes))}`,
+                text: `${subjectCode} ${catalogNumber}\n ${timeFormatter(Number(startHours), Number(startMinutes))} - ${timeFormatter(Number(endHours), Number(endMinutes))}`,
                 start: classMeetingStartTime,
                 end: classMeetingEndTime,
                 resource: RESOURCE_IDS[DAYS.indexOf(day.toUpperCase())],
