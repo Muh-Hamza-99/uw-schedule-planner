@@ -11,7 +11,6 @@ const theme = extendTheme({
       },
     },
   },
-  // ...other theme customisations
 })
 
 import App from "./App.tsx";

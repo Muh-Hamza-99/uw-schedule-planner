@@ -9,7 +9,6 @@ const Calendar = () => {
   const {selectedCourses} = useContext(SelectedCoursesContext);
   const calendarRef = useRef();
   useEffect(() => {
-    console.log(selectedCoursesToEvents(selectedCourses));
     const events = selectedCoursesToEvents(selectedCourses);
     // @ts-ignore
     calendarRef.current && calendarRef.current.control.update({ events: events });

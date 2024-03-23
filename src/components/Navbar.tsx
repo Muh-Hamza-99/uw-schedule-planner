@@ -13,7 +13,7 @@ import { TermContext } from "../context/useTerm";
 
 const Navbar = () => {
   const [terms, setTerms] = useState<Term[]>([]);
-  const {term, setTerm} = useContext(TermContext);
+  const {setTerm} = useContext(TermContext);
   const toast = useToast();
   const getTerms = async () => {
     const url = `https://openapi.data.uwaterloo.ca/v3/Terms/foracademicyear/${Number((new Date).getFullYear()) + 1}`;

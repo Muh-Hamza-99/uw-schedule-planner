@@ -10,7 +10,6 @@ import {
   CardFooter,
   CardBody,
   Spacer,
-  Flex
 } from "@chakra-ui/react";
 import { SelectedCoursesContext } from "../context/useSelectedCourses";
 import CourseItem from "./CourseItem";
