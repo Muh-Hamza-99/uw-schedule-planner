@@ -8,7 +8,9 @@ import {
   Divider,
   Card,
   CardFooter,
-  CardBody
+  CardBody,
+  Spacer,
+  Flex
 } from "@chakra-ui/react";
 import { SelectedCoursesContext } from "../context/useSelectedCourses";
 import CourseItem from "./CourseItem";
@@ -16,7 +18,7 @@ import SelectedCourseItem from "./SelectedCourseItem";
 
 const Sidebar = () => {
   const toast = useToast();
-  const {selectedCourses} = useContext(SelectedCoursesContext);
+  const {selectedCourses, setSelectedCourses} = useContext(SelectedCoursesContext);
   const [courses, setCourses] = useState<Course[]>([]);
   const [subjectCode, setSubjectCode] = useState("");
   const [catalogNumber, setCatalogNumber] = useState("");
@@ -48,6 +50,13 @@ const Sidebar = () => {
     }
   }
 
+  const clearCalendar = () => {
+    setSelectedCourses([]);
+    setCourses([]);
+    setCatalogNumber("");
+    setSubjectCode("");
+  }
+
   return (
     <>
       <Card mt={2} height={"80vh"}>
@@ -71,8 +80,10 @@ const Sidebar = () => {
               })}
             </Stack>
           </CardBody>
-          <CardFooter>
-            <Button onClick={onSubmit} my={2} colorScheme="teal">Get Classes</Button>
+          <CardFooter alignItems={"center"}>
+              <Button onClick={onSubmit} my={2} colorScheme="teal">Get Classes</Button>
+              <Spacer />
+              <Button onClick={() => clearCalendar()} colorScheme="red">Clear Calendar</Button>
           </CardFooter>
       </Card>
     </>
