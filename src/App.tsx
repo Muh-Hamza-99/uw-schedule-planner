@@ -9,12 +9,12 @@ const App = () => {
   return (
     <TermContextProvider>
     <SelectedCoursesContextProvider>
-      <Flex m={4} gap={4} height="100vh" justifyContent={"space-between"}>
-        <Flex width={"40%"} height={"100%"} flexDirection={"column"}>
+      <Flex m={4} gap={4} height="100vh" flexDirection={{ base: "column", lg: "row" }}>
+        <Flex width={{ base: "100%", lg:"40%" }} height={"100%"} flexDirection={"column"} mb={{ base: "8", lg: "0" }}>
           <Navbar />
           <Sidebar />
         </Flex>
-        <Box width={"60%"}>
+        <Box width={{ base: "100%", lg: "60%" }}>
           <Calendar  />
         </Box>
       </Flex>
