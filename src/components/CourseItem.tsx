@@ -22,7 +22,9 @@ const CourseItem = ({ course, subjectCode, catalogNumber }: Props) => {
     const endMinutes = endDate.getMinutes();
 
     const handleCourses = (course: Course) => {
-          setSelectedCourses([...selectedCourses, { ...course,  subjectCode: subjectCode.toUpperCase().trim(), catalogNumber: catalogNumber.toUpperCase().trim() }]);
+          const newSelectedCourses = [...selectedCourses, { ...course,  subjectCode: subjectCode.toUpperCase().trim(), catalogNumber: catalogNumber.toUpperCase().trim() }]; 
+          setSelectedCourses(newSelectedCourses);
+          localStorage.setItem("selectedCourses", JSON.stringify(newSelectedCourses));
       }
 
     if (course.courseComponent === "LEC" || course.courseComponent === "LAB") {

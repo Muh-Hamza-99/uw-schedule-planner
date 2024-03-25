@@ -57,6 +57,7 @@ const Sidebar = () => {
   const clearCalendar = () => {
     setSelectedCourses([]);
     setCourses([]);
+    localStorage.removeItem("selectedCourses");
     setCatalogNumber("");
     setSubjectCode("");
   }

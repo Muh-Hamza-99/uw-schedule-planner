@@ -12,7 +12,9 @@ type Provider = {
 }
 
 export function SelectedCoursesContextProvider({ children }: Provider) {
-    const [selectedCourses, setSelectedCourses] = useState<SelectedCourse[]>([]);
+    const initialSelectedCoursesString = localStorage.getItem("selectedCourses");
+    const initialSelectedCourses: SelectedCourse[] = initialSelectedCoursesString ? JSON.parse(initialSelectedCoursesString) : [];
+    const [selectedCourses, setSelectedCourses] = useState<SelectedCourse[]>(initialSelectedCourses);
     return (
         <SelectedCoursesContext.Provider value={{selectedCourses, setSelectedCourses}}>
             {children}
