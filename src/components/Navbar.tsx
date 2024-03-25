@@ -35,7 +35,7 @@ const Navbar = () => {
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <Select onChange={event => setTerm(terms.filter(term => term.termCode == event.target.value)[0])} placeholder="Select a term...">
-                {terms.map(term => <option value={term.termCode}>{term.name}</option>)}
+                {terms.map((term, index) => <option key={index} value={term.termCode}>{term.name}</option>)}
               </Select>
             </Stack>
           </Flex>
