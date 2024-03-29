@@ -17,7 +17,7 @@ const Calendar = () => {
         <DayPilotCalendar 
           ref={calendarRef} 
           dayBeginsHour={8}
-          dayEndsHour={18}
+          dayEndsHour={17}
           viewType="Resources"
           columns={COLUMNS}
           timeRangeSelectedHandling={"Disabled"}
