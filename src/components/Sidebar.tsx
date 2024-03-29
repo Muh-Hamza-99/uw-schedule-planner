@@ -64,7 +64,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <Card mt={2} height={"80vh"}>
+      <Card mt={2} height={{ base: "60vh", lg: "85vh" }}>
           <CardBody overflow={"scroll"}>
             <Stack mb={4} spacing={3} direction="row">
               <Input onChange={event => setSubjectCode(event.target.value)} value={subjectCode} placeholder="MATH, CS, ECON..." />
@@ -86,9 +86,9 @@ const Sidebar = () => {
             </Stack>
           </CardBody>
           <CardFooter alignItems={"center"}>
-              <Button onClick={onSubmit} my={2} colorScheme="teal">Get Classes</Button>
+              <Button size={{ base: "sm", lg: "md" }} onClick={onSubmit} my={2} colorScheme="teal">Get Classes</Button>
               <Spacer />
-              <Button onClick={() => clearCalendar()} colorScheme="red">Clear Calendar</Button>
+              <Button size={{ base: "sm", lg: "md" }} onClick={() => clearCalendar()} colorScheme="red">Clear Calendar</Button>
           </CardFooter>
       </Card>
     </>

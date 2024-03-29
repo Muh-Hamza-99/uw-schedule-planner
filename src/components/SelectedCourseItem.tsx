@@ -1,4 +1,4 @@
-import { Badge, Card, CardBody, Checkbox, Spacer, Stack } from '@chakra-ui/react';
+import { Badge, Card, CardBody, Checkbox, Flex, Spacer, Stack } from '@chakra-ui/react';
 import daysFormatter from '../lib/daysFormatter';
 import timeFormatter from '../lib/timeFormatter';
 
@@ -20,15 +20,16 @@ const CourseItem = ({ course }: Props) => {
       return (
           <Card>
             <CardBody>
-              <Stack direction="row">
-                <Badge colorScheme="teal">{`${course.subjectCode} ${course.catalogNumber}`}</Badge>
-                {startHours ? (<Badge colorScheme="green">{timeFormatter(startHours, startMinutes)}</Badge>) : null}
-                {endHours ? (<Badge colorScheme="red">{timeFormatter(endHours, endMinutes)}</Badge>) : null}
-                <Badge colorScheme="purple">{daysFormatter(classMeetingWeekPatternCode) ? daysFormatter(classMeetingWeekPatternCode) : "Online"}</Badge>
-                {enrolledStudents !== maxEnrollmentCapacity ? (<Badge>{`${enrolledStudents}/${maxEnrollmentCapacity}`}</Badge>) : (<Badge colorScheme="red">FULL</Badge>)}
-                <Spacer />
+              <Flex gap={2} justifyContent={"space-between"}>
+                <Flex gap={2} flexWrap={"wrap"}>
+                  <Badge colorScheme="teal">{`${course.subjectCode} ${course.catalogNumber}`}</Badge>
+                  {startHours ? (<Badge colorScheme="green">{timeFormatter(startHours, startMinutes)}</Badge>) : null}
+                  {endHours ? (<Badge colorScheme="red">{timeFormatter(endHours, endMinutes)}</Badge>) : null}
+                  <Badge colorScheme="purple">{daysFormatter(classMeetingWeekPatternCode) ? daysFormatter(classMeetingWeekPatternCode) : "Online"}</Badge>
+                  {enrolledStudents !== maxEnrollmentCapacity ? (<Badge>{`${enrolledStudents}/${maxEnrollmentCapacity}`}</Badge>) : (<Badge colorScheme="red">FULL</Badge>)}
+                </Flex>
                 <Checkbox defaultChecked disabled></Checkbox>
-              </Stack>
+              </Flex>
             </CardBody>
           </Card>
       )
