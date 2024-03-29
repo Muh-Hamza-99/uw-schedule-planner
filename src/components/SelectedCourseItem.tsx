@@ -1,4 +1,4 @@
-import { Badge, Card, CardBody, Checkbox, Flex, Spacer, Stack } from '@chakra-ui/react';
+import { Badge, Card, CardBody, Checkbox, Flex } from '@chakra-ui/react';
 import daysFormatter from '../lib/daysFormatter';
 import timeFormatter from '../lib/timeFormatter';
 
