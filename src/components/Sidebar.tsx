@@ -30,7 +30,7 @@ const Sidebar = () => {
         .then(data => setCourses(data.data))
         .catch(error => {
           if (isAxiosError(error)) {
-            toast({ title: "Not found!", description: `${subjectCode.toUpperCase().trim()} ${catalogNumber.toUpperCase().trim()}`, duration: 3000, isClosable: true, status: "error" });
+            toast({ position: "top", title: "Not found!", description: `${subjectCode.toUpperCase().trim()} ${catalogNumber.toUpperCase().trim()}`, duration: 3000, isClosable: true, status: "error" });
             setSubjectCode("");
             setCatalogNumber("");
           }});
@@ -38,17 +38,17 @@ const Sidebar = () => {
 
   const onSubmit = () => {
     if (subjectCode === "" || catalogNumber === "") {
-      toast({ title: "Invalid Input!", description: "Please fill in the fields", duration: 3000, isClosable: true, status: "error" });
+      toast({ position: "top", title: "Invalid Input!", description: "Please fill in the fields", duration: 3000, isClosable: true, status: "error" });
       return;
     } else if (!term) {
-      toast({ title: "No Term!", description: "Please pick a term!", duration: 3000, isClosable: true, status: "error" });
+      toast({ position: "top", title: "No Term!", description: "Please pick a term!", duration: 3000, isClosable: true, status: "error" });
       return;
     }
     try {
       setCourses([]);
       getCourses();
     } catch (error) {
-      toast({ title: "Umm...", description: `Something went wrong!`, duration: 3000, isClosable: true, status: "error" });
+      toast({ position: "top", title: "Umm...", description: `Something went wrong!`, duration: 3000, isClosable: true, status: "error" });
       setSubjectCode("");
       setCatalogNumber("");
     }
