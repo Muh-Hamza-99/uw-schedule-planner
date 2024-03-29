@@ -3,8 +3,8 @@ import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <VStack direction={"column"} mt={4}>
-        <Text>Muhammad Hamza</Text>
+    <VStack direction={"column"} py={4}>
+        <Text textColor={"#1E1B18"} fontSize={"large"} fontWeight={"semibold"}>Muhammad Hamza</Text>
         <Flex gap={4} justifyContent={"center"} alignItems={"center"}>
             <Link isExternal href="https://www.linkedin.com/in/hamzaasad/">
                 <FaLinkedin color={"#0077B5"} size={30} />

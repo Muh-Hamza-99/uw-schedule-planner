@@ -10,8 +10,7 @@ const App = () => {
   return (
     <TermContextProvider>
       <SelectedCoursesContextProvider>
-        <Flex p={4} flexDirection={"column"}>
-          <Flex gap={4} flexDirection={{ base: "column", lg: "row" }}>
+          <Flex p={4} gap={4} flexDirection={{ base: "column", lg: "row" }}>
             <Flex width={{ base: "100%", lg:"40%" }} height={"100%"} flexDirection={"column"} mb={{ base: "8", lg: "0" }}>
               <Navbar />
               <Sidebar />
@@ -21,7 +20,6 @@ const App = () => {
             </Box>
           </Flex>
           <Footer />
-        </Flex>
       </SelectedCoursesContextProvider>
     </TermContextProvider>
   );
