@@ -27,13 +27,16 @@ const Sidebar = () => {
   const getCourses = async () => {
     const url = `https://openapi.data.uwaterloo.ca/v3/ClassSchedules/${term?.termCode}/${subjectCode.toLowerCase().trim()}/${catalogNumber.toLowerCase().trim()}`;
     await axios.get(url, { headers: { "x-api-key": import.meta.env.VITE_UW_API_KEY } })
-        .then(data => setCourses(data.data.filter((course: Course) => course.enrolledStudents !== 0)))
-        .catch(error => {
+        .then(data => {
+          const filteredData = data.data.filter((course: Course) => course.enrolledStudents !== 0);
+          setCourses(filteredData);
+          if (filteredData.length === 0) toast({ position: "top", title: "Future Term!", description: "Courses not available for future term!", duration: 3000, isClosable: true, status: "error" });
+        }).catch(error => {
           if (isAxiosError(error)) {
             toast({ position: "top", title: "Not found!", description: `${subjectCode.toUpperCase().trim()} ${catalogNumber.toUpperCase().trim()}`, duration: 3000, isClosable: true, status: "error" });
             setSubjectCode("");
             setCatalogNumber("");
-          }});
+        }});
   }
 
   const onSubmit = () => {
