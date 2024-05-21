@@ -10,6 +10,7 @@ import {
   CardFooter,
   CardBody,
   Spacer,
+  Text,
 } from "@chakra-ui/react";
 import { SelectedCoursesContext } from "../context/useSelectedCourses";
 import CourseItem from "./CourseItem";
@@ -27,7 +28,7 @@ const Sidebar = () => {
   const getCourses = async () => {
     const url = `https://openapi.data.uwaterloo.ca/v3/ClassSchedules/${term?.termCode}/${subjectCode.toLowerCase().trim()}/${catalogNumber.toLowerCase().trim()}`;
     await axios.get(url, { headers: { "x-api-key": import.meta.env.VITE_UW_API_KEY } })
-        .then(data => setCourses(data.data))
+        .then(data => setCourses(data.data.filter((course: Course) => course.enrolledStudents !== 0)))
         .catch(error => {
           if (isAxiosError(error)) {
             toast({ position: "top", title: "Not found!", description: `${subjectCode.toUpperCase().trim()} ${catalogNumber.toUpperCase().trim()}`, duration: 3000, isClosable: true, status: "error" });
@@ -77,7 +78,7 @@ const Sidebar = () => {
             <Stack mt={4}>
             {courses?.map((course, index) => {
                 const isSelectedCourse = selectedCourses.map(course => course.classNumber).includes(course.classNumber);
-                if (isSelectedCourse) {
+                if (isSelectedCourse || course.enrolledStudents === 0) {
                   return null;
                 } else {
                   return (<CourseItem key={index} course={course} subjectCode={subjectCode} catalogNumber={catalogNumber} />)
